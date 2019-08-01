@@ -1,0 +1,163 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: black;
+  &:link {
+    text-decoration: none;
+  }
+}
+
+ul {
+  list-style-type: none;
+}
+
+header {
+  z-index: 1000;
+
+  padding-top: 0.5rem;
+  position: sticky;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  background: white;
+
+  height: 4rem;
+  width: 100%;
+
+  h1 {
+    padding: 0.5rem;
+    margin: 0;
+  }
+}
+
+#logo {
+  justify-self: center;
+  align-self: center;
+  padding: 0.5rem;
+  font-weight: 900;
+}
+
+#nav-bar {
+  padding-right: 1rem;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: space-around;
+  align-content: center;
+
+  & * {
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0 0.5rem;
+  }
+}
+
+.nav-item > a {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0.4rem;
+    bottom: -0.3rem;
+    width: 90%;
+    height: 0.2rem;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+    background-image: linear-gradient(
+      90deg,
+      #ff99b5,
+      #e83c69,
+      #ea2d8e,
+      #7e007a
+    );
+  }
+  &:hover {
+    &::before {
+      transform: scaleX(1);
+    }
+  }
+}
+
+/* Intro */
+section {
+  height: 70vh;
+  padding-top: 3rem;
+
+  display: flex;
+  flex-direction: row;
+
+  #name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20vh;
+
+    margin: 5rem -15rem 0 5rem;
+
+    line-height: 20vh;
+    z-index: 1;
+  }
+}
+
+#bg-blob {
+  margin-left: -15rem;
+  margin-top: -5rem;
+  overflow: hidden;
+
+  height: 100vh;
+  svg {
+    transform: scale(0.85);
+  }
+}
+
+#btn-down-arrow {
+  overflow: hidden;
+  background: none;
+
+  left: 0;
+  margin-top: -4rem;
+
+  text-align: center;
+
+  .btn {
+    height: 5rem;
+  }
+
+  #down-arrow {
+    width: 4rem;
+  }
+  & > .btn:active {
+    #down-arrow {
+      transform: scale(0.95);
+    }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  section {
+    height: 50vh;
+    #name {
+      font-size: 10vh !important;
+      line-height: 10vh !important;
+
+      margin: 5rem -15rem 0 1rem !important;
+    }
+
+    #bg-blob {
+      svg {
+        transform: scale(0.6);
+      }
+    }
+  }
+}
