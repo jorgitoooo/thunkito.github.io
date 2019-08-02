@@ -19,7 +19,7 @@ ul {
 
 header {
   z-index: 1000;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -52,11 +52,72 @@ header h1 {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
-  padding: 0.5rem;
+  padding-left: 2rem;
   font-weight: 900;
 }
 
+#btn-nav-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 1rem;
+  margin-right: calc(3rem/ 2);
+  width: 3rem;
+  height: calc((0.3rem + 0.15rem) * 5);
+}
+
+#btn-nav-menu * {
+  height: 0.3rem;
+  width: 3rem;
+  position: absolute;
+  padding-top: 0.15rem;
+  background-color: black;
+}
+
+#btn-nav-menu #top-bar {
+  top: 0;
+  -webkit-transition: top 75ms linear, -webkit-transform 150ms linear;
+  transition: top 75ms linear, -webkit-transform 150ms linear;
+  transition: top 75ms linear, transform 150ms linear;
+  transition: top 75ms linear, transform 150ms linear, -webkit-transform 150ms linear;
+}
+
+#btn-nav-menu #mid-bar {
+  top: calc((calc((0.3rem + 0.15rem) * 5) - 0.3rem - 0.15rem) / 2);
+  -webkit-transition: opacity 200ms ease-in;
+  transition: opacity 200ms ease-in;
+}
+
+#btn-nav-menu #low-bar {
+  bottom: 0;
+  -webkit-transition: bottom 75ms linear, -webkit-transform 150ms linear;
+  transition: bottom 75ms linear, -webkit-transform 150ms linear;
+  transition: bottom 75ms linear, transform 150ms linear;
+  transition: bottom 75ms linear, transform 150ms linear, -webkit-transform 150ms linear;
+}
+
+#btn-nav-menu:hover {
+  cursor: pointer;
+}
+
+#btn-nav-menu:active #top-bar {
+  top: calc((0.3rem + 0.15rem) * 2);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+#btn-nav-menu:active #mid-bar {
+  opacity: 0;
+}
+
+#btn-nav-menu:active #low-bar {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: calc((0.3rem + 0.15rem) * 2);
+}
+
 #nav-bar {
+  display: none !important;
+  /*******************/
   padding-right: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -105,8 +166,8 @@ header h1 {
           transform: scaleX(1);
 }
 
-/* Intro */
-section {
+/* Hero */
+#hero {
   height: 70vh;
   padding-top: 3rem;
   display: -webkit-box;
@@ -118,18 +179,19 @@ section {
           flex-direction: row;
 }
 
-section #name {
+#hero #name {
   font-family: 'Poppins', sans-serif;
-  font-size: 20vh;
+  font-size: calc(70vh / 4);
+  height: calc(70vh / 2);
   margin: 5rem -15rem 0 5rem;
-  line-height: 20vh;
-  z-index: 1;
+  line-height: calc(70vh / 4);
 }
 
 #bg-blob {
   margin-left: -15rem;
   margin-top: -5rem;
   overflow: hidden;
+  z-index: -1;
   height: 100vh;
 }
 
@@ -138,15 +200,20 @@ section #name {
           transform: scale(0.85);
 }
 
+#featured-projects {
+  z-index: 999;
+  background: transparent;
+}
+
 #btn-down-arrow {
   overflow: hidden;
-  background: none;
   left: 0;
   margin-top: -4rem;
   text-align: center;
 }
 
 #btn-down-arrow .btn {
+  cursor: pointer;
   height: 5rem;
 }
 
@@ -159,18 +226,54 @@ section #name {
           transform: scale(0.95);
 }
 
-@media only screen and (max-width: 700px) {
-  section {
-    height: 50vh;
+@media only screen and (max-width: 900px) {
+  #hero {
+    height: 60vh;
   }
-  section #name {
-    font-size: 10vh !important;
-    line-height: 10vh !important;
+  #hero #name {
+    font-size: calc(60vh / 4) !important;
+    line-height: calc(60vh / 4) !important;
     margin: 5rem -15rem 0 1rem !important;
   }
-  section #bg-blob svg {
+  #hero #bg-blob svg {
     -webkit-transform: scale(0.6);
             transform: scale(0.6);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #hero {
+    height: 50vh;
+  }
+  #hero #name {
+    font-size: calc(50vh / 4) !important;
+    line-height: calc(50vh / 4) !important;
+    margin: 5rem -15rem 0 1rem !important;
+  }
+  #hero #bg-blob svg {
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #name {
+    font-size: 1vh !important;
+    margin: 0 -25rem 0 1rem !important;
+  }
+  #bg-blob {
+    top: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  #hero {
+    margin-left: 0;
+  }
+  #name {
+    font-size: 2rem !important;
+    margin: 0 -25rem 0 -0.5rem !important;
+    margin-left: 0 !important;
   }
 }
 /*# sourceMappingURL=style.css.map */

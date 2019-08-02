@@ -17,10 +17,11 @@ ul {
   list-style-type: none;
 }
 
+// Navigation Bar
 header {
   z-index: 1000;
 
-  padding-top: 0.5rem;
+  padding-top: 1rem;
   position: sticky;
   top: 0;
   left: 0;
@@ -43,11 +44,70 @@ header {
 #logo {
   justify-self: center;
   align-self: center;
-  padding: 0.5rem;
+  padding-left: 2rem;
   font-weight: 900;
 }
 
+#btn-nav-menu {
+  $bar_width: 3rem;
+  $bar_height: 0.3rem;
+  $bar_padding: 0.15rem;
+  $menu_height: calc((#{$bar_height} + #{$bar_padding}) * 5);
+  $mid_bar_pos: calc((#{$menu_height} - #{$bar_height} - #{$bar_padding}) / 2);
+
+  position: absolute;
+  right: 0;
+
+  margin-top: 1rem;
+  margin-right: calc(#{$bar_width}/ 2);
+
+  width: $bar_width;
+  height: $menu_height;
+
+  & * {
+    height: $bar_height;
+    width: $bar_width;
+
+    position: absolute;
+    padding-top: $bar_padding;
+
+    background-color: black;
+  }
+
+  #top-bar {
+    top: 0;
+    transition: top 75ms linear, transform 150ms linear;
+  }
+  #mid-bar {
+    top: $mid_bar_pos;
+    transition: opacity 200ms ease-in;
+  }
+  #low-bar {
+    bottom: 0;
+    transition: bottom 75ms linear, transform 150ms linear;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    #top-bar {
+      top: calc((#{$bar_height} + #{$bar_padding}) * 2);
+      transform: rotate(45deg);
+    }
+    #mid-bar {
+      opacity: 0;
+    }
+    #low-bar {
+      transform: rotate(-45deg);
+      top: calc((#{$bar_height} + #{$bar_padding}) * 2);
+    }
+  }
+}
 #nav-bar {
+  display: none !important;
+  /*******************/
   padding-right: 1rem;
 
   display: flex;
@@ -91,9 +151,13 @@ header {
   }
 }
 
-/* Intro */
-section {
-  height: 70vh;
+/* Hero */
+#hero {
+  $hero_height: 70vh;
+  $name_font_size: calc(#{$hero_height} / 4);
+  $name_line_height: $name_font_size;
+
+  height: $hero_height;
   padding-top: 3rem;
 
   display: flex;
@@ -101,12 +165,12 @@ section {
 
   #name {
     font-family: 'Poppins', sans-serif;
-    font-size: 20vh;
+    font-size: $name_font_size;
+    height: calc(#{$hero_height} / 2);
 
     margin: 5rem -15rem 0 5rem;
 
-    line-height: 20vh;
-    z-index: 1;
+    line-height: $name_line_height;
   }
 }
 
@@ -115,22 +179,27 @@ section {
   margin-top: -5rem;
   overflow: hidden;
 
+  z-index: -1;
+
   height: 100vh;
   svg {
     transform: scale(0.85);
   }
 }
-
+// Featured Projects
+#featured-projects {
+  z-index: 999;
+  background: transparent;
+}
 #btn-down-arrow {
   overflow: hidden;
-  background: none;
-
   left: 0;
   margin-top: -4rem;
 
   text-align: center;
 
   .btn {
+    cursor: pointer;
     height: 5rem;
   }
 
@@ -144,12 +213,16 @@ section {
   }
 }
 
-@media only screen and (max-width: 700px) {
-  section {
-    height: 50vh;
+@media only screen and (max-width: 900px) {
+  #hero {
+    $hero_height: 60vh;
+    $name_font_size: calc(#{$hero_height} / 4);
+    $name_line_height: $name_font_size;
+
+    height: $hero_height;
     #name {
-      font-size: 10vh !important;
-      line-height: 10vh !important;
+      font-size: $name_font_size !important;
+      line-height: $name_line_height !important;
 
       margin: 5rem -15rem 0 1rem !important;
     }
@@ -159,5 +232,49 @@ section {
         transform: scale(0.6);
       }
     }
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #hero {
+    $hero_height: 50vh;
+    $name_font_size: calc(#{$hero_height} / 4);
+    $name_line_height: $name_font_size;
+
+    height: $hero_height;
+    #name {
+      font-size: $name_font_size !important;
+      line-height: $name_line_height !important;
+
+      margin: 5rem -15rem 0 1rem !important;
+    }
+
+    #bg-blob {
+      svg {
+        transform: scale(0.6);
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #name {
+    font-size: 1vh !important;
+    margin: 0 -25rem 0 1rem !important;
+  }
+
+  #bg-blob {
+    top: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  #hero {
+    margin-left: 0;
+  }
+  #name {
+    font-size: 2rem !important;
+    margin: 0 -25rem 0 -0.5rem !important;
+    margin-left: 0 !important;
   }
 }
