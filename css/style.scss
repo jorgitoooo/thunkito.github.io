@@ -26,13 +26,13 @@ header {
   top: 0;
   left: 0;
 
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-content: center;
-  background: white;
+  // display: flex;
+  // flex-direction: row;
+  // justify-content: space-between;
+  // align-content: center;
+  // background: blue;
 
-  height: 4rem;
+  height: 4.5rem;
   width: 100%;
 
   h1 {
@@ -42,13 +42,15 @@ header {
 }
 
 #logo {
-  justify-self: center;
-  align-self: center;
+  // justify-self: center;
+  // align-self: center;
   padding-left: 2rem;
   font-weight: 900;
 }
 
 #btn-nav-menu {
+  display: none;
+  /******************/
   $bar_width: 3rem;
   $bar_height: 0.3rem;
   $bar_padding: 0.15rem;
@@ -56,10 +58,11 @@ header {
   $mid_bar_pos: calc((#{$menu_height} - #{$bar_height} - #{$bar_padding}) / 2);
 
   position: absolute;
+  top: 0;
   right: 0;
 
-  margin-top: 1rem;
-  margin-right: calc(#{$bar_width}/ 2);
+  // margin-top: 1.5rem;
+  margin: calc(#{$bar_width}/ 2);
 
   width: $bar_width;
   height: $menu_height;
@@ -76,15 +79,15 @@ header {
 
   #top-bar {
     top: 0;
-    transition: top 75ms linear, transform 150ms linear;
+    transition: top 55ms ease-out, transform 250ms ease-out;
   }
   #mid-bar {
     top: $mid_bar_pos;
-    transition: opacity 200ms ease-in;
+    transition: opacity 130ms linear;
   }
   #low-bar {
     bottom: 0;
-    transition: bottom 75ms linear, transform 150ms linear;
+    transition: bottom 55ms ease-out, transform 250ms ease-out;
   }
 
   &:hover {
@@ -106,9 +109,13 @@ header {
   }
 }
 #nav-bar {
-  display: none !important;
+  // display: none !important;
+  // background: pink;
+  position: absolute;
+  top: 0;
+  right: 0;
   /*******************/
-  padding-right: 1rem;
+  padding: 1.1rem;
 
   display: flex;
   flex-direction: row;
@@ -123,7 +130,7 @@ header {
   }
 }
 
-.nav-item > a {
+.nav-item a {
   position: relative;
 
   &::before {
@@ -144,10 +151,8 @@ header {
       #7e007a
     );
   }
-  &:hover {
-    &::before {
-      transform: scaleX(1);
-    }
+  &:hover::before {
+    transform: scaleX(1);
   }
 }
 
@@ -194,17 +199,18 @@ header {
 #btn-down-arrow {
   overflow: hidden;
   left: 0;
+  // bottom: 12px;
   margin-top: -4rem;
 
   text-align: center;
 
   .btn {
     cursor: pointer;
-    height: 5rem;
+    height: 5.5rem;
   }
 
   #down-arrow {
-    width: 4rem;
+    width: 4.5rem;
   }
   & > .btn:active {
     #down-arrow {
@@ -224,13 +230,16 @@ header {
       font-size: $name_font_size !important;
       line-height: $name_line_height !important;
 
-      margin: 5rem -15rem 0 1rem !important;
+      // margin: 5rem -15rem 0 1rem !important;
     }
 
     #bg-blob {
       svg {
         transform: scale(0.6);
       }
+    }
+    #down-arrow {
+      margin-top: 3rem;
     }
   }
 }
@@ -268,12 +277,12 @@ header {
   }
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 380px) {
   #hero {
     margin-left: 0;
   }
   #name {
-    font-size: 2rem !important;
+    font-size: 20px !important;
     margin: 0 -25rem 0 -0.5rem !important;
     margin-left: 0 !important;
   }
