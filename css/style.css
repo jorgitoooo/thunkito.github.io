@@ -163,6 +163,7 @@ header h1 {
   -webkit-box-direction: normal;
       -ms-flex-direction: row;
           flex-direction: row;
+  overflow: hidden;
 }
 
 #hero #name {
