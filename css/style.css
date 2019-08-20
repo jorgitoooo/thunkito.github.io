@@ -59,6 +59,13 @@ nav {
   margin-left: 1.5rem;
 }
 
+#name span {
+  font-size: 8vw;
+  font-family: 'Satisfy', sans-serif;
+  position: relative;
+  top: -5vh;
+}
+
 .nav-menu-item {
   font-weight: 600;
 }
@@ -179,6 +186,7 @@ nav {
   }
   #name span {
     font-size: 4rem !important;
+    top: -8vh;
   }
 }
 

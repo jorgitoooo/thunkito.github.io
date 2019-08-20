@@ -55,9 +55,16 @@ nav {
   position: relative;
   font-family: 'Poppins';
   font-size: 20vw;
-  // margin-top: 5rem;
+
   top: 20vh;
   margin-left: 1.5rem;
+
+  span {
+    font-size: 8vw;
+    font-family: 'Satisfy', sans-serif;
+    position: relative;
+    top: -5vh;
+  }
 }
 
 .nav-menu-item {
@@ -177,6 +184,7 @@ $mid_bar_pos: calc((#{$menu_height} - #{$bar_height} - #{$bar_padding}) / 2);
 
     span {
       font-size: 4rem !important;
+      top: -8vh;
     }
   }
 }
