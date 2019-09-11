@@ -5,11 +5,6 @@
   font-family: Arial, Helvetica, sans-serif;
 }
 
-body,
-html {
-  overflow: hidden;
-}
-
 a {
   text-decoration: none;
   color: black;
@@ -31,16 +26,29 @@ nav {
           box-shadow: none;
 }
 
-.sm-blob {
-  position: absolute;
-  top: 25vh;
-  right: 0;
-  margin-right: 1rem;
+#cnv-container {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+
+#cnv {
   background: transparent;
-  -webkit-transform: rotate(30deg);
-          transform: rotate(30deg);
+  margin-top: 5%;
+  margin-bottom: 20%;
   height: auto;
-  width: 50%;
+  width: 100%;
+}
+
+#btn-down {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+#btn-down:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 #logo {
@@ -52,6 +60,7 @@ nav {
 }
 
 #name {
+  height: 80vh;
   position: relative;
   font-family: 'Poppins';
   font-size: 20vw;
@@ -175,11 +184,20 @@ nav {
   height: 100vh;
 }
 
+@media only screen and (min-width: 500px) {
+  #cnv-container {
+    width: 100%;
+    text-align: center;
+  }
+  #cnv {
+    width: 65%;
+  }
+}
+
 @media only screen and (min-width: 700px) {
-  .sm-blob {
-    -webkit-transform: rotate(15deg);
-            transform: rotate(15deg);
-    margin-right: 2rem;
+  #cnv {
+    margin-top: 0;
+    margin-bottom: 2%;
   }
   #name {
     font-size: 10rem;
@@ -187,6 +205,18 @@ nav {
   #name span {
     font-size: 4rem !important;
     top: -8vh;
+  }
+}
+
+@media only screen and (min-width: 800px) {
+  #cnv {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  #cnv {
+    width: 35%;
   }
 }
 

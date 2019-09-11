@@ -9,10 +9,10 @@ $link-color: black;
   // overflow-x: hidden;
   // overflow-y: hidden;
 }
-body,
-html {
-  overflow: hidden;
-}
+// body,
+// html {
+//   // overflow: hidden;
+// }
 a {
   text-decoration: none;
   color: $link-color;
@@ -27,20 +27,31 @@ header {
 }
 
 nav {
-  // background: white;
   background: transparent;
   box-shadow: none;
 }
-
-.sm-blob {
-  position: absolute;
-  top: 25vh;
-  right: 0;
-  margin-right: 1rem;
+#cnv-container {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+}
+#cnv {
   background: transparent;
-  transform: rotate(30deg);
+
+  margin-top: 5%;
+  margin-bottom: 20%;
   height: auto;
-  width: 50%;
+  width: 100%;
+}
+
+#btn-down {
+  width: 4.5rem;
+  height: 4.5rem;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+  }
 }
 
 #logo {
@@ -52,6 +63,7 @@ nav {
 }
 
 #name {
+  height: 80vh;
   position: relative;
   font-family: 'Poppins';
   font-size: 20vw;
@@ -68,7 +80,6 @@ nav {
 }
 
 .nav-menu-item {
-  // padding-bottom: 1.8rem;
   font-weight: 600;
 
   a {
@@ -174,10 +185,23 @@ $mid_bar_pos: calc((#{$menu_height} - #{$bar_height} - #{$bar_padding}) / 2);
   height: 100vh;
 }
 // Media queries
+@media only screen and (min-width: 500px) {
+  #cnv-container {
+    // background: pink;
+    width: 100%;
+    text-align: center;
+  }
+  #cnv {
+    width: 65%;
+    // text-align: center;
+    // margin-left: 40%;
+  }
+}
 @media only screen and (min-width: 700px) {
-  .sm-blob {
-    transform: rotate(15deg);
-    margin-right: 2rem;
+  #cnv {
+    margin-top: 0;
+    margin-bottom: 2%;
+    // width: 50%;
   }
   #name {
     font-size: 10rem;
@@ -186,6 +210,18 @@ $mid_bar_pos: calc((#{$menu_height} - #{$bar_height} - #{$bar_padding}) / 2);
       font-size: 4rem !important;
       top: -8vh;
     }
+  }
+}
+@media only screen and (min-width: 800px) {
+  #cnv {
+    width: 40%;
+    // margin-left: 40%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  #cnv {
+    width: 35%;
+    // margin-left: 40%;
   }
 }
 @media only screen and (max-height: 800px) {
