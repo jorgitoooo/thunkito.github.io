@@ -49,10 +49,10 @@ window.onload = () => {
   };
 
   const scrollToName = () => {
-    const name = document.getElementById('name');
+    const aboutMe = document.getElementById('about-me');
     const cnvCntr = document.getElementById('cnv-container');
 
-    const finalPos = name.offsetTop;
+    const finalPos = aboutMe.offsetTop;
     const startPos = cnvCntr.offsetTop;
     let currPos = startPos;
 
@@ -86,7 +86,9 @@ window.onload = () => {
 
         currPos += dy;
 
-        window.scrollTo(0, currPos);
+        console.log(window.scrollY);
+
+        window.scrollTo(window.scrollY, currPos);
       }
       stopId = requestAnimationFrame(scrollAnimation);
 

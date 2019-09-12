@@ -1,0 +1,12 @@
+// Colors
+$link-color: black;
+// Menu button
+$bar_width: 3rem;
+$bar_height: 0.4rem;
+$bar_padding: 0.1rem;
+$menu_height: calc((#{$bar_height} + #{$bar_padding}) * 5);
+$mid_bar_pos: calc((#{$menu_height} - #{$bar_height} - #{$bar_padding}) / 2);
+// Navbar
+$navbar_height: 4.5rem;
+// About me
+$img_width: 5rem;

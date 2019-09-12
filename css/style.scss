@@ -1,47 +1,73 @@
-$link-color: black;
-/*******************************/
-:root * {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-
-  // overflow: hidden;
-  // overflow-x: hidden;
-  // overflow-y: hidden;
-}
-// body,
-// html {
-//   // overflow: hidden;
-// }
-a {
-  text-decoration: none;
-  color: $link-color;
-}
-ul {
-  text-decoration: none;
-  list-style: none;
-  color: black;
-}
-header {
-  background: burlywood;
-}
-
-nav {
-  background: transparent;
-  box-shadow: none;
-}
-#cnv-container {
-  width: 100%;
+// Global variables
+@import 'components/gvariables';
+// Default styles
+@import 'components/defaults';
+// Navbar
+@import 'components/navbar';
+// Algorithm canvas
+@import 'components/algocanvas';
+/*********************************/
+#hero {
   height: 100vh;
-  text-align: center;
 }
-#cnv {
-  background: transparent;
 
-  margin-top: 5%;
-  margin-bottom: 20%;
-  height: auto;
+#name {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20vw;
+
+  margin-left: 1.5rem;
+
+  span {
+    position: relative;
+    top: -5vh;
+
+    font-family: 'Satisfy', sans-serif;
+    font-size: 8vw;
+  }
+}
+
+#about-me {
+  // background: pink;
+  // height: 100vh;
+  padding-top: $navbar_height + 1rem;
+}
+
+#about-me-container {
   width: 100%;
+}
+#about-me-desc {
+  position: relative;
+  left: 10%;
+
+  width: 80%;
+  // height: 30rem;
+  // height: 7rem;
+
+  background: white;
+
+  padding: 2.5rem 1rem;
+  border: solid 0.5rem black;
+  border-radius: 20px;
+}
+#about-me-img {
+  position: absolute;
+  top: calc(-#{$img_width} / 2);
+
+  width: $img_width;
+  height: $img_width;
+
+  left: calc(50% - #{#{$img_width} / 2});
+
+  background: inherit;
+
+  border: inherit;
+  border-radius: 50%;
+}
+#about-me-title {
+  font-family: 'Poppins';
+  font-size: 2rem;
+}
+#about-me-body {
 }
 
 #btn-down {
@@ -54,227 +80,5 @@ nav {
   }
 }
 
-#logo {
-  color: black;
-  font-weight: 600;
-  font-size: 3.5rem;
-  margin-top: 0.3rem;
-  margin-left: 0.5rem;
-}
-
-#name {
-  height: 80vh;
-  position: relative;
-  font-family: 'Poppins';
-  font-size: 20vw;
-
-  top: 20vh;
-  margin-left: 1.5rem;
-
-  span {
-    font-size: 8vw;
-    font-family: 'Satisfy', sans-serif;
-    position: relative;
-    top: -5vh;
-  }
-}
-
-.nav-menu-item {
-  font-weight: 600;
-
-  a {
-    position: relative;
-    font-size: 1.5rem;
-    margin-right: 2.5rem;
-    color: black;
-  }
-  a:hover {
-    background: none;
-  }
-  a::before {
-    content: '';
-    position: absolute;
-    padding-right: inherit;
-    bottom: 1rem;
-    width: 100%;
-    height: 0.2rem;
-    transform: scaleX(0);
-    transform-origin: center;
-    transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
-    background-image: linear-gradient(
-      90deg,
-      #ff99b5,
-      #e83c69,
-      #ea2d8e,
-      #7e007a
-    );
-  }
-  a:hover::before {
-    transform: scaleX(1);
-  }
-}
-
-// Menu button variables
-$bar_width: 3rem;
-$bar_height: 0.4rem;
-$bar_padding: 0.1rem;
-$menu_height: calc((#{$bar_height} + #{$bar_padding}) * 5);
-$mid_bar_pos: calc((#{$menu_height} - #{$bar_height} - #{$bar_padding}) / 2);
-#btn-nav-menu {
-  z-index: 1000;
-  position: relative;
-  top: 0;
-  // right: 0;
-  float: right;
-
-  // margin-top: 1.5rem;
-  margin-top: calc(#{$bar_width}/ 3);
-  margin-right: calc(#{$bar_width}/ 2);
-
-  width: $bar_width;
-  height: $menu_height;
-
-  & * {
-    height: $bar_height;
-    width: $bar_width;
-
-    border-radius: 5px;
-
-    position: absolute;
-    padding-top: $bar_padding;
-
-    background-color: black;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.menu-open {
-  & #top-bar {
-    top: 0;
-    transition: top 55ms ease-out, transform 250ms ease-out;
-  }
-  & #mid-bar {
-    top: $mid_bar_pos;
-    transition: opacity 130ms linear;
-  }
-  & #low-bar {
-    bottom: 0;
-    transition: bottom 55ms ease-out, transform 250ms ease-out;
-  }
-}
-.menu-close {
-  & * {
-    background-color: white !important;
-  }
-  & #top-bar {
-    top: calc((#{$bar_height} + #{$bar_padding}) * 2);
-    transform: rotate(45deg);
-  }
-  & #mid-bar {
-    opacity: 0;
-  }
-  & #low-bar {
-    transform: rotate(-45deg);
-    top: calc((#{$bar_height} + #{$bar_padding}) * 2);
-  }
-}
-#hero {
-  height: 100vh;
-}
 // Media queries
-@media only screen and (min-width: 500px) {
-  #cnv-container {
-    // background: pink;
-    width: 100%;
-    text-align: center;
-  }
-  #cnv {
-    width: 65%;
-    // text-align: center;
-    // margin-left: 40%;
-  }
-}
-@media only screen and (min-width: 700px) {
-  #cnv {
-    margin-top: 0;
-    margin-bottom: 2%;
-    // width: 50%;
-  }
-  #name {
-    font-size: 10rem;
-
-    span {
-      font-size: 4rem !important;
-      top: -8vh;
-    }
-  }
-}
-@media only screen and (min-width: 800px) {
-  #cnv {
-    width: 40%;
-    // margin-left: 40%;
-  }
-}
-@media only screen and (min-width: 1000px) {
-  #cnv {
-    width: 35%;
-    // margin-left: 40%;
-  }
-}
-@media only screen and (max-height: 800px) {
-  :root {
-    overflow-y: visible;
-  }
-}
-@media only screen and (max-width: 992px) {
-  .hide-on-med-and-down {
-    // display: none !important;
-
-    display: flex !important;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    right: 0 !important;
-    position: absolute;
-    width: 0;
-    & * {
-      display: none;
-    }
-    height: 100vh;
-    // background: #7e007a;
-    background: black;
-
-    // transition: width 100ms cubic-bezier(0.075, 0.82, 0.165, 1);
-    transition: width 100ms cubic-bezier(0.01, 0.83, 0.66, 0.72);
-  }
-  .slide-in {
-    // transform: scaleX(1) !important;
-    width: 100%;
-
-    a {
-      margin: 1.5rem;
-    }
-
-    & * {
-      display: block;
-      color: white !important;
-
-      padding-top: 0 !important;
-      font-size: 4rem !important;
-
-      transition: font-size 100ms ease-in;
-
-      font-weight: 800;
-      &:hover {
-        font-size: 5.5rem !important;
-      }
-      &:before {
-        display: none;
-      }
-    }
-  }
-}
+@import 'components/mediaqueries';
