@@ -1,5 +1,5 @@
 export default (bc, grid) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     // Global variables
     const progressLimit = 15;
     /**************************************/

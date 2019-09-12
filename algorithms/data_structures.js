@@ -18,8 +18,28 @@ class BarChart {
     this.activeColor = 'salmon';
     this.neutralColor = 'black';
     this.sortedColor = 'dodgerblue';
+    this.scannedColor = '#808088';
   }
 
+  ActiveBarAt(pos) {
+    if (pos < 0 || pos >= this.bars.length) return false;
+    this.ColorBar(pos, this.activeColor);
+  }
+  ScannedBarAt(pos) {
+    if (pos < 0 || pos >= this.bars.length) return false;
+    this.ColorBar(pos, this.scannedColor);
+  }
+  NeutralBarAt(pos) {
+    if (pos < 0 || pos >= this.bars.length) return false;
+    this.ColorBar(pos, this.neutralColor);
+  }
+  SortedBarAt(pos) {
+    if (pos < 0 || pos >= this.bars.length) return false;
+    this.ColorBar(pos, this.sortedColor);
+  }
+  ColorBar(pos, color) {
+    this.bars[pos].color = color;
+  }
   ScrambleBars() {
     for (let k = 0; k < 10; k++) {
       for (let i = 0; i < this.bars.length - 1; i++) {

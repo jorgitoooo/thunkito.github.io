@@ -8,12 +8,14 @@ import bfs from '../algorithms/graphs/bfs.js';
 import dfs from '../algorithms/graphs/dfs.js';
 import dijkstra from '../algorithms/graphs/dijkstra.js';
 import insertionSort from '../algorithms/sort/insertionsort.js';
+import selectionSort from '../algorithms/sort/selectionsort.js';
 
 window.onload = () => {
   async function display(algorithms, type) {
     while (true) {
       type %= algorithms.length;
 
+      let algorithm = algorithms[type];
       let dataStruct, grid;
 
       if (type < 3) {
@@ -26,7 +28,8 @@ window.onload = () => {
         grid = new BarChartGrid();
       }
 
-      await algorithms[type++](dataStruct, grid);
+      await algorithm(dataStruct, grid);
+      type++;
     }
   }
 
@@ -93,7 +96,7 @@ window.onload = () => {
     };
     let stopId = requestAnimationFrame(scrollAnimation);
   };
-  const algorithms = [dijkstra, dfs, bfs, insertionSort];
+  const algorithms = [dijkstra, dfs, bfs, insertionSort, selectionSort];
   display(algorithms, 0);
 
   window.onscroll = highlightNavOnScroll;

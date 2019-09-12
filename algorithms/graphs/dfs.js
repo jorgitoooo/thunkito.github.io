@@ -1,5 +1,5 @@
 export default (g, grid) => {
-  return new Promise((resolve, reject) => {
+  return new Promise(resolve => {
     /****************** Global variables ******************/
     // Speed of graph traversal
     const progressLimit = 30;
