@@ -149,13 +149,25 @@ nav {
   width: 100%;
 }
 
+#about-me-img, .project-img {
+  position: absolute;
+  width: 6rem;
+  height: 6rem;
+  border: inherit;
+  border-radius: 50%;
+}
+
+#name, #about-me-title, #projects-title,
+.project-title, #weather-app-img {
+  font-family: 'Poppins', sans-serif;
+}
+
 /*********************************/
 #hero {
   height: 100vh;
 }
 
 #name {
-  font-family: 'Poppins', sans-serif;
   font-size: 20vw;
   margin-left: 1.5rem;
 }
@@ -168,7 +180,7 @@ nav {
 }
 
 #about-me {
-  padding: 5.5rem 0;
+  padding: 8rem 0;
 }
 
 #about-me-container {
@@ -186,20 +198,14 @@ nav {
 }
 
 #about-me-img {
-  position: absolute;
   top: calc(-6rem / 2);
-  width: 6rem;
-  height: 6rem;
   left: calc(50% - 6rem / 2);
-  background: url("../assets/images/smiley_face.png");
+  background: white url("../assets/images/smiley_face.png");
   background-size: 6.9rem;
   background-position-y: -0.42857rem;
-  border: inherit;
-  border-radius: 50%;
 }
 
 #about-me-title {
-  font-family: 'Poppins';
   font-size: 2rem;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -216,6 +222,7 @@ nav {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  font-size: 1.1rem;
 }
 
 #about-me-body * {
@@ -224,6 +231,99 @@ nav {
       align-self: flex-end;
   right: 0;
   width: 90%;
+}
+
+#projects {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 8rem 0 0 0;
+  width: 100%;
+}
+
+#projects-title {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  padding-right: 30%;
+  padding-bottom: 1.2rem;
+  margin-bottom: 2.5rem;
+  border-bottom: solid 0.5rem black;
+}
+
+.project {
+  position: relative;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  margin-left: 3rem;
+  padding: 0 0 6rem 6rem;
+  width: 80%;
+  border-left: solid 0.5rem black;
+}
+
+.project-img {
+  top: -1.5rem;
+  left: -3rem;
+  background: white;
+  border: solid 0.5rem black;
+}
+
+.project-skills {
+  padding: 0.5rem 0;
+}
+
+#bash-clone-img {
+  font-size: 3rem;
+  font-weight: 700;
+  color: greenyellow;
+  background: black;
+  padding-left: 0.5rem;
+}
+
+#octopush-img {
+  background: #e202e6 url("../assets/images/octopush.png") no-repeat;
+  background-size: 4.61538rem;
+  background-position-x: 0.1875rem;
+  background-position-y: 0.375rem;
+}
+
+#weather-app-img {
+  background: #05e4fd url("../assets/images/cloud.png") no-repeat;
+  background-size: 4rem;
+  background-position-x: 0.54545rem;
+  background-position-y: 1rem;
+}
+
+.project-desc-list {
+  margin-top: 1.5rem;
+}
+
+.project-desc-list-item {
+  position: relative;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+
+.bullet {
+  position: absolute;
+  top: 7px;
+  left: -15px;
+  border: solid 2.5px black;
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+}
+
+footer {
+  border-top: solid 0.5rem black;
+  width: 100%;
+  height: 5rem;
 }
 
 #btn-down {
@@ -258,6 +358,9 @@ nav {
   #name span {
     font-size: 4rem !important;
     top: -8vh;
+  }
+  .project {
+    width: 50%;
   }
 }
 

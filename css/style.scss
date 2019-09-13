@@ -6,13 +6,15 @@
 @import 'components/navbar';
 // Algorithm canvas
 @import 'components/algocanvas';
+// Extensions
+@import 'components/extensions';
 /*********************************/
 #hero {
   height: 100vh;
 }
 
 #name {
-  font-family: 'Poppins', sans-serif;
+  @extend %title;
   font-size: 20vw;
 
   margin-left: 1.5rem;
@@ -27,9 +29,7 @@
 }
 
 #about-me {
-  // background: pink;
-  // height: 100vh;
-  padding: $navbar_height + 1rem 0;
+  padding: $section_pad 0;
 }
 
 #about-me-container {
@@ -46,30 +46,22 @@
   background: white;
 
   padding: 2.5rem 1rem;
-  border: solid 0.5rem black;
+  border: solid $border_width black;
   border-radius: 20px;
 }
+
 #about-me-img {
-  position: absolute;
+  @extend %img-dim-pos;
+
   top: calc(-#{$img_width} / 2);
-
-  width: $img_width;
-  height: $img_width;
-
   left: calc(50% - #{#{$img_width} / 2});
 
-  // background: inherit;
-  // background: url('../assets/images/face.png');
-  background: url('../assets/images/smiley_face.png');
+  background: white url('../assets/images/smiley_face.png');
   background-size: $img_width * 1.15;
-  // background-position-x: $img_width / 8;
   background-position-y: -$img_width / 14;
-
-  border: inherit;
-  border-radius: 50%;
 }
 #about-me-title {
-  font-family: 'Poppins';
+  @extend %title;
   font-size: 2rem;
   justify-content: space-between;
   align-content: space-between;
@@ -77,6 +69,8 @@
 #about-me-body {
   display: flex;
   flex-direction: column;
+
+  font-size: 1.1rem;
 
   & * {
     margin: 0.2rem 0;
@@ -86,7 +80,108 @@
     width: 90%;
   }
 }
+#projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  padding: $section_pad 0 0 0;
+
+  width: 100%;
+}
+#projects-title,
+.project-title {
+  @extend %title;
+}
+
+#projects-title {
+  align-self: flex-end;
+
+  padding-right: 30%;
+  padding-bottom: 1.2rem;
+  margin-bottom: 2.5rem;
+
+  border-bottom: solid $border_width black;
+}
+
+.project {
+  position: relative;
+  align-self: flex-start;
+  margin-left: $img_width / 2;
+
+  padding: 0 0 $img_width $img_width;
+
+  width: 80%;
+  // height: 20rem;
+
+  border-left: solid $border_width black;
+}
+
+.project-img {
+  @extend %img-dim-pos;
+
+  top: -$img_width / 4;
+  left: -$img_width / 2;
+  background: white;
+
+  border: solid $border_width black;
+}
+
+.project-skills {
+  padding: 0.5rem 0;
+}
+
+#bash-clone-img {
+  font-size: 3rem;
+  font-weight: 700;
+  color: greenyellow;
+  background: black;
+
+  padding-left: 0.5rem;
+}
+#octopush-img {
+  // background: rgb(164, 5, 238) url('../assets/images/octopush.png') no-repeat;
+  // background: rgb(188, 44, 255) url('../assets/images/octopush.png') no-repeat;
+  background: #e202e6 url('../assets/images/octopush.png') no-repeat;
+  background-size: $img_width / 1.3;
+  background-position-x: $img_width / 32;
+  background-position-y: $img_width / 16;
+}
+#weather-app-img {
+  @extend %title;
+  background: #05e4fd url('../assets/images/cloud.png') no-repeat;
+  background-size: $img_width / 1.5;
+  background-position-x: $img_width / 11;
+  background-position-y: $img_width / 6;
+}
+
+.project-desc-list {
+  margin-top: 1.5rem;
+}
+.project-desc-list-item {
+  position: relative;
+  margin-top: 0.5rem;
+  font-size: 1.1rem;
+}
+.bullet {
+  // display: inline-block;
+  // margin-bottom: -0.5px;
+  position: absolute;
+
+  top: 7px;
+  left: -15px;
+
+  border: solid 2.5px black;
+  border-radius: 50%;
+
+  width: 10px;
+  height: 10px;
+}
+footer {
+  border-top: solid $border_width black;
+  width: 100%;
+  height: 5rem;
+}
 #btn-down {
   width: 4.5rem;
   height: 4.5rem;

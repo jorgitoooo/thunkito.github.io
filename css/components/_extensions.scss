@@ -1,0 +1,12 @@
+%img-dim-pos {
+  position: absolute;
+  width: $img_width;
+  height: $img_width;
+
+  border: inherit;
+  border-radius: 50%;
+}
+
+%title {
+  font-family: 'Poppins', sans-serif;
+}

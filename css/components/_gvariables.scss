@@ -10,3 +10,7 @@ $mid_bar_pos: calc((#{$menu_height} - #{$bar_height} - #{$bar_padding}) / 2);
 $navbar_height: 4.5rem;
 // About me
 $img_width: 6rem;
+// Border
+$border_width: 0.5rem;
+// Sections
+$section_pad: $navbar_height + 3.5rem;
