@@ -60,8 +60,8 @@ nav {
   transition: -webkit-transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
   transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), -webkit-transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
-  background-image: -webkit-gradient(linear, left top, right top, from(#ff99b5), color-stop(#e83c69), color-stop(#ea2d8e), to(#7e007a));
-  background-image: linear-gradient(90deg, #ff99b5, #e83c69, #ea2d8e, #7e007a);
+  background-image: -webkit-gradient(linear, left top, right top, from(salmon), color-stop(salmon), to(dodgerblue));
+  background-image: linear-gradient(90deg, salmon, salmon, dodgerblue);
 }
 
 .nav-menu-item a:hover::before {
