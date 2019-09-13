@@ -86,8 +86,6 @@ window.onload = () => {
 
         currPos += dy;
 
-        console.log(window.scrollY);
-
         window.scrollTo(window.scrollY, currPos);
       }
       stopId = requestAnimationFrame(scrollAnimation);
