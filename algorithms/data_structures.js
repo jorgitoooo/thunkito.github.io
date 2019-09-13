@@ -177,8 +177,10 @@ class DijkstraNode extends Node {
 class Graph {
   constructor(numOfNodesPerRow = 25) {
     this.wallColor = '#fff';
-    this.srcColor = '#ff5a5f';
-    this.visitedColor = '#0baabc';
+    // this.srcColor = '#ff5a5f';
+    this.srcColor = 'salmon';
+    // this.visitedColor = '#0baabc';
+    this.visitedColor = 'dodgerblue';
     this.destColor = this.srcColor;
     this.destFoundColor = '#ff262d';
 

@@ -29,30 +29,7 @@
     width: 40%;
   }
 }
-@media only screen and (min-width: 1000px) {
-  #cnv {
-    width: 35%;
-  }
-  #about-me {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-content: space-between;
-    align-items: flex-start;
-  }
-  #name {
-    // align-self: stretch;
-    font-size: 10vw;
 
-    span {
-      font-size: 3.5vw !important;
-    }
-  }
-  #about-me-container {
-    // width: 70%;
-    width: 50%;
-  }
-}
 @media only screen and (max-width: 992px) {
   .hide-on-med-and-down {
     display: flex !important;
@@ -98,5 +75,32 @@
         display: none;
       }
     }
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  #cnv {
+    width: 35%;
+  }
+  #about-me {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: space-between;
+    align-items: flex-start;
+  }
+  #name {
+    font-size: 10vw;
+
+    span {
+      font-size: 3.5vw !important;
+    }
+  }
+  #about-me-container {
+    width: 50%;
+  }
+
+  #about-me-img {
+    left: -$img_width / 2;
   }
 }

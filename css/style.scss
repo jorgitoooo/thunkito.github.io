@@ -29,7 +29,7 @@
 #about-me {
   // background: pink;
   // height: 100vh;
-  padding-top: $navbar_height + 1rem;
+  padding: $navbar_height + 1rem 0;
 }
 
 #about-me-container {
@@ -58,7 +58,12 @@
 
   left: calc(50% - #{#{$img_width} / 2});
 
-  background: inherit;
+  // background: inherit;
+  // background: url('../assets/images/face.png');
+  background: url('../assets/images/smiley_face.png');
+  background-size: $img_width * 1.15;
+  // background-position-x: $img_width / 8;
+  background-position-y: -$img_width / 14;
 
   border: inherit;
   border-radius: 50%;
@@ -66,8 +71,20 @@
 #about-me-title {
   font-family: 'Poppins';
   font-size: 2rem;
+  justify-content: space-between;
+  align-content: space-between;
 }
 #about-me-body {
+  display: flex;
+  flex-direction: column;
+
+  & * {
+    margin: 0.2rem 0;
+    align-self: flex-end;
+    right: 0;
+
+    width: 90%;
+  }
 }
 
 #btn-down {

@@ -168,7 +168,7 @@ nav {
 }
 
 #about-me {
-  padding-top: 5.5rem;
+  padding: 5.5rem 0;
 }
 
 #about-me-container {
@@ -187,11 +187,13 @@ nav {
 
 #about-me-img {
   position: absolute;
-  top: calc(-5rem / 2);
-  width: 5rem;
-  height: 5rem;
-  left: calc(50% - 5rem / 2);
-  background: inherit;
+  top: calc(-6rem / 2);
+  width: 6rem;
+  height: 6rem;
+  left: calc(50% - 6rem / 2);
+  background: url("../assets/images/smiley_face.png");
+  background-size: 6.9rem;
+  background-position-y: -0.42857rem;
   border: inherit;
   border-radius: 50%;
 }
@@ -199,6 +201,29 @@ nav {
 #about-me-title {
   font-family: 'Poppins';
   font-size: 2rem;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-line-pack: justify;
+      align-content: space-between;
+}
+
+#about-me-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#about-me-body * {
+  margin: 0.2rem 0;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  right: 0;
+  width: 90%;
 }
 
 #btn-down {
@@ -239,38 +264,6 @@ nav {
 @media only screen and (min-width: 800px) {
   #cnv {
     width: 40%;
-  }
-}
-
-@media only screen and (min-width: 1000px) {
-  #cnv {
-    width: 35%;
-  }
-  #about-me {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -ms-flex-line-pack: justify;
-        align-content: space-between;
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-  }
-  #name {
-    font-size: 10vw;
-  }
-  #name span {
-    font-size: 3.5vw !important;
-  }
-  #about-me-container {
-    width: 50%;
   }
 }
 
@@ -320,6 +313,41 @@ nav {
   }
   .slide-in *:before {
     display: none;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  #cnv {
+    width: 35%;
+  }
+  #about-me {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-line-pack: justify;
+        align-content: space-between;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  #name {
+    font-size: 10vw;
+  }
+  #name span {
+    font-size: 3.5vw !important;
+  }
+  #about-me-container {
+    width: 50%;
+  }
+  #about-me-img {
+    left: -3rem;
   }
 }
 /*# sourceMappingURL=style.css.map */
