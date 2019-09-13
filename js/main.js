@@ -101,5 +101,10 @@ window.onload = () => {
 
   window.onscroll = highlightNavOnScroll;
 
-  document.getElementById('btn-down').onclick = scrollToName;
+  // Smooth Scroll script
+  const scroll = new SmoothScroll('#btn-container a[href*="#"]', {
+    speed: 750
+  });
+
+  // document.getElementById('btn-down').onclick = scrollToName;
 };
