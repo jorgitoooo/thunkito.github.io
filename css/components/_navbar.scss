@@ -42,7 +42,9 @@ nav {
     //   #ea2d8e,
     //   #7e007a
     // );
-    background-image: linear-gradient(90deg, salmon, salmon, dodgerblue);
+    background: dodgerblue;
+    // background-image: linear-gradient(10deg, dodgerblue, dodgerblue);
+    // background-image: linear-gradient(10deg, salmon, salmon);
   }
   a:hover::before {
     transform: scaleX(1);
@@ -53,10 +55,8 @@ nav {
   z-index: 1000;
   position: relative;
   top: 0;
-  // right: 0;
   float: right;
 
-  // margin-top: 1.5rem;
   margin-top: calc(#{$bar_width}/ 3);
   margin-right: calc(#{$bar_width}/ 2);
 

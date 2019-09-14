@@ -140,13 +140,12 @@
   padding-left: 0.5rem;
 }
 #octopush-img {
-  // background: rgb(164, 5, 238) url('../assets/images/octopush.png') no-repeat;
-  // background: rgb(188, 44, 255) url('../assets/images/octopush.png') no-repeat;
   background: #e202e6 url('../assets/images/octopush.png') no-repeat;
   background-size: $img_width / 1.3;
   background-position-x: $img_width / 32;
   background-position-y: $img_width / 16;
 }
+
 #weather-app-img {
   @extend %title;
   background: #05e4fd url('../assets/images/cloud.png') no-repeat;
@@ -155,17 +154,32 @@
   background-position-y: $img_width / 6;
 }
 
+#tetris-t-img {
+  @extend %title;
+  background: black url('../assets/images/tetris_t.png') no-repeat;
+  background-size: $img_width / 1.8;
+  background-position-x: $img_width / 5;
+}
+
 .project-desc-list {
   margin-top: 1.5rem;
 }
+
 .project-desc-list-item {
   position: relative;
   margin-top: 0.5rem;
   font-size: 1.1rem;
 }
+
+.badge {
+  font-weight: 600 !important;
+  background: rgb(61, 61, 61) !important;
+  color: white !important;
+
+  border-radius: 5px !important;
+}
+
 .bullet {
-  // display: inline-block;
-  // margin-bottom: -0.5px;
   position: absolute;
 
   top: 7px;
@@ -177,11 +191,6 @@
   width: 10px;
   height: 10px;
 }
-footer {
-  border-top: solid $border_width black;
-  width: 100%;
-  height: 5rem;
-}
 
 #btn-down {
   width: 4.5rem;
@@ -191,6 +200,12 @@ footer {
     cursor: pointer;
     transform: scale(1.1);
   }
+}
+
+footer {
+  border-top: solid $border_width black;
+  width: 100%;
+  height: 5rem;
 }
 
 // Media queries
