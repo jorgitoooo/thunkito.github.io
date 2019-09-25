@@ -358,13 +358,13 @@ class Graph {
 }
 
 class DijkstraGraph extends Graph {
-  constructor() {
-    super();
+  constructor(numOfNodesPerRow = 25) {
+    super(numOfNodesPerRow);
   }
 
   ColorShortestPath() {
-    let curNode = this.nodes[this.destination.y][this.destination.x];
-    let startNode = this.nodes[this.source.y][this.source.x];
+    let curNode = super.nodes[super.destination.y][super.destination.x];
+    let startNode = super.nodes[super.source.y][super.source.x];
 
     while (curNode.prevNode !== null && curNode.prevNode !== startNode) {
       curNode.prevNode.color = 'purple';

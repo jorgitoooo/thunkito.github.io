@@ -14,23 +14,48 @@ window.onload = () => {
   async function display(algorithms, type) {
     while (true) {
       type %= algorithms.length;
+      let success = false;
+      while (!success) {
+        let algorithm = algorithms[type];
+        let dataStruct, grid;
 
-      let algorithm = algorithms[type];
-      let dataStruct, grid;
+        if (type < 3) {
+          // Graph & grid construction
+          dataStruct = new DijkstraGraph();
+          grid = new GraphGrid();
+        } else {
+          // Bar chart & grid construction
+          dataStruct = new BarChart();
+          grid = new BarChartGrid();
+        }
 
-      if (type < 3) {
-        // Graph & grid construction
-        dataStruct = new DijkstraGraph();
-        grid = new GraphGrid();
-      } else {
-        // Bar chart & grid construction
-        dataStruct = new BarChart();
-        grid = new BarChartGrid();
+        success = await algorithm(dataStruct, grid);
+
+        if (!success) await displayFailure();
       }
-
-      await algorithm(dataStruct, grid);
-      type++;
+      ++type;
     }
+  }
+
+  function displayFailure() {
+    return new Promise(resolve => {
+      let cnv = document.getElementById('cnv');
+
+      let alt = false;
+
+      let interval = setInterval(() => {
+        cnv.style.border = alt ? 'none' : '3px red dashed';
+        alt = !alt;
+      }, 250);
+
+      setTimeout(() => {
+        cnv.style.border = 'none';
+
+        clearInterval(interval);
+
+        resolve();
+      }, 2000);
+    });
   }
 
   const highlightNavOnScroll = () => {

@@ -1,4 +1,4 @@
-export default (g, grid) => {
+export default function depthFirstSearch(g, grid) {
   return new Promise(resolve => {
     /****************** Global variables ******************/
     // Speed of graph traversal
@@ -27,6 +27,7 @@ export default (g, grid) => {
     let start = null;
     let stopId;
 
+    grid.Clear();
     function dfsAnimation(timestamp) {
       let progress = timestamp - start;
 
@@ -57,16 +58,19 @@ export default (g, grid) => {
 
       stopId = requestAnimationFrame(dfsAnimation);
 
-      if (vertexStack.length < 1 || (adjX == destX && adjY == destY)) {
+      if (adjX == destX && adjY == destY) {
         cancelAnimationFrame(stopId);
 
         setTimeout(() => {
           grid.Clear();
-          resolve();
+          resolve(true);
         }, 1500);
+      } else if (vertexStack.length < 1) {
+        cancelAnimationFrame(stopId);
+        resolve(false);
       }
     }
 
     setTimeout(() => (stopId = requestAnimationFrame(dfsAnimation)), 500);
   });
-};
+}

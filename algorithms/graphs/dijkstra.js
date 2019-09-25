@@ -1,4 +1,4 @@
-export default (g, grid) => {
+export default function dijkstra(g, grid) {
   return new Promise(resolve => {
     /****************** Global variables ******************/
     // Speed of graph traversal
@@ -19,15 +19,39 @@ export default (g, grid) => {
     g.nodes[g.destination.y][g.destination.x].color = g.destColor;
     g.nodes[g.destination.y][g.destination.x].isWall = false;
 
+    //**************************
+    // g.nodes[10][10].color = g.destColor;
+    // g.nodes[10][10].isWall = false;
+
+    // g.nodes[9][9].isWall = true;
+    // g.nodes[9][10].isWall = true;
+    // g.nodes[9][11].isWall = true;
+    // g.nodes[10][9].isWall = true;
+    // g.nodes[10][11].isWall = true;
+    // g.nodes[11][9].isWall = true;
+    // g.nodes[11][10].isWall = true;
+    // g.nodes[11][11].isWall = true;
+
+    // g.nodes[9][9].color = '#fff';
+    // g.nodes[9][10].color = '#fff';
+    // g.nodes[9][11].color = '#fff';
+    // g.nodes[10][9].color = '#fff';
+    // g.nodes[10][11].color = '#fff';
+    // g.nodes[11][9].color = '#fff';
+    // g.nodes[11][10].color = '#fff';
+    // g.nodes[11][11].color = '#fff';
+    //**************************
+
     let adjList = g.GetAdjacentNodes(x, y);
+    // console.log(`adjList = ${adjList}`);
     let coords = [];
     let adjX = [],
       adjY = [];
-    // let reachable = true;
 
     let start = null;
     let stopId;
 
+    grid.Clear();
     function dijkstraAnimate(timestamp) {
       let progress = timestamp - start;
 
@@ -48,6 +72,7 @@ export default (g, grid) => {
             removeDuplicates();
 
             if (adjX === g.destination.x && adjY === g.destination.y) {
+              // if (adjX === 10 && adjY === 10) {
               g.nodes[adjY][adjX].color = g.destFoundColor;
             } else {
               g.nodes[adjY][adjX].color = g.visitedColor;
@@ -62,19 +87,22 @@ export default (g, grid) => {
 
       stopId = requestAnimationFrame(dijkstraAnimate);
 
-      if (
-        adjList.length < 1 ||
-        (adjX == g.destination.x && adjY == g.destination.y)
-      ) {
+      if (adjX == g.destination.x && adjY == g.destination.y) {
+        // if (adjX == 10 && adjY == 10) {
         cancelAnimationFrame(stopId);
 
         start = null;
         stopId = requestAnimationFrame(pathAnimation);
+      } else if (adjList.length < 1) {
+        cancelAnimationFrame(stopId);
+        resolve(false);
       }
     }
 
     let travelingNode = g.nodes[g.destination.y][g.destination.x];
     let pathCompleted = false;
+
+    grid.Clear();
     function pathAnimation(timestamp) {
       let progress = timestamp - start;
 
@@ -96,7 +124,7 @@ export default (g, grid) => {
         cancelAnimationFrame(stopId);
         setTimeout(() => {
           grid.Clear();
-          resolve();
+          resolve(true);
         }, 1500);
       }
     }
@@ -105,7 +133,7 @@ export default (g, grid) => {
 
     // Removes duplicates from coordinates array
     function removeDuplicates() {
-      // Split array of coordinates into x- & y- coordinate arrays
+      // Split array of coordinates into x- & y-coordinate arrays
       let xCoords = adjList.map(coord => coord[0]);
       let yCoords = adjList.map(coord => coord[1]);
 
@@ -146,4 +174,4 @@ export default (g, grid) => {
       dupIndices.forEach(idx => adjList.splice(idx, 1));
     }
   });
-};
+}

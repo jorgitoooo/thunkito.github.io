@@ -1,4 +1,4 @@
-export default (bc, grid) => {
+export default function selectionSort(bc, grid) {
   return new Promise(resolve => {
     // Global variables
     const progressLimit = 15;
@@ -60,11 +60,11 @@ export default (bc, grid) => {
         cancelAnimationFrame(stopId);
         setTimeout(() => {
           grid.Clear();
-          resolve();
+          resolve(true);
         }, 1500);
       }
     }
 
     stopId = requestAnimationFrame(selectionSortAnimation);
   });
-};
+}

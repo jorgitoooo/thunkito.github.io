@@ -1,4 +1,4 @@
-export default (g, grid) => {
+export default function breadthFirstSearch(g, grid) {
   return new Promise(resolve => {
     /****************** Global variables ******************/
     // Speed of graph traversal
@@ -9,10 +9,12 @@ export default (g, grid) => {
     /********************************************************/
     let { x, y } = g.source;
 
+    // Initialize source node
     g.nodes[y][x].wasVisited = true;
     g.nodes[y][x].isWall = false;
     g.nodes[y][x].color = g.srcColor;
 
+    // Initialize destination/target node
     g.nodes[g.destination.y][g.destination.x].color = g.destColor;
     g.nodes[g.destination.y][g.destination.x].isWall = false;
 
@@ -24,6 +26,7 @@ export default (g, grid) => {
     let start = null;
     let stopId;
 
+    grid.Clear();
     function bfsAnimation(timestamp) {
       let progress = timestamp - start;
 
@@ -57,16 +60,16 @@ export default (g, grid) => {
 
       stopId = requestAnimationFrame(bfsAnimation);
 
-      if (
-        adjList.length < 1 ||
-        (adjX == g.destination.x && adjY == g.destination.y)
-      ) {
+      if (adjX == g.destination.x && adjY == g.destination.y) {
         cancelAnimationFrame(stopId);
 
         setTimeout(() => {
           grid.Clear();
-          resolve();
+          resolve(true);
         }, 1500);
+      } else if (adjList.length < 1) {
+        cancelAnimationFrame(stopId);
+        resolve(false);
       }
     }
 
@@ -115,4 +118,4 @@ export default (g, grid) => {
       dupIndices.forEach(idx => adjList.splice(idx, 1));
     }
   });
-};
+}
