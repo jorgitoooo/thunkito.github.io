@@ -50,8 +50,6 @@ class BarChart {
   }
 
   SwapBars(i, j) {
-    // console.log(i, j);
-
     let tmpBar = this.bars[i];
     this.bars[i] = this.bars[j];
     this.bars[j] = tmpBar;
@@ -74,7 +72,6 @@ class BarChart {
       for (let i = 0; i < bars.length; i++) {
         this.bars = [...this.bars, ...bars[i]];
       }
-      // console.log(this.bars);
     }
   }
 }
@@ -91,23 +88,18 @@ class BarChartGrid {
     cnv.height = window.innerWidth * 0.94;
     cnv.style.backgroundColor = this.bgColor;
 
-    if (cnv.getContext) {
-      const pad = cnv.width / (bc.numOfBars * bc.numOfBars);
-      const dx = cnv.width / bc.numOfBars - pad;
-      let posX = pad;
+    const pad = cnv.width / (bc.numOfBars * bc.numOfBars);
+    const dx = cnv.width / bc.numOfBars - pad;
+    let posX = pad;
 
-      for (let i = 0; i < bc.numOfBars; i++) {
-        let height = Math.random() * cnv.height * 0.9 + cnv.height * 0.05;
-        bc.Insert(
-          new Bar(posX, cnv.height - height, dx, height, bc.neutralColor)
-        );
-        posX += dx + pad;
-      }
-      this.Draw(bc);
-    } else {
-      alert('Canvas not available on your browser.');
-      return;
+    for (let i = 0; i < bc.numOfBars; i++) {
+      let height = Math.random() * cnv.height * 0.9 + cnv.height * 0.05;
+      bc.Insert(
+        new Bar(posX, cnv.height - height, dx, height, bc.neutralColor)
+      );
+      posX += dx + pad;
     }
+    this.Draw(bc);
   }
 
   Clear() {
@@ -136,7 +128,8 @@ class BarChartGrid {
 /******************** Graphs **********************/
 /**************************************************/
 class Node {
-  constructor(x, y, width, height, color, isWall) {
+  constructor(x, y, width, height, color, isWall, prevNode = null) {
+    // super(x, y, width, height, color, isWall);
     this.x = x;
     this.y = y;
     this.width = width;
@@ -144,16 +137,6 @@ class Node {
     this.isWall = isWall;
     this.color = isWall ? 'transparent' : color;
     this.wasVisited = false;
-  }
-
-  GetCoordsAndDim() {
-    return [this.x, this.y, this.width, this.height];
-  }
-}
-
-class DijkstraNode extends Node {
-  constructor(x, y, width, height, color, isWall, prevNode = null) {
-    super(x, y, width, height, color, isWall);
     this.prevNode = prevNode;
     this.distance = Infinity;
   }
@@ -171,6 +154,9 @@ class DijkstraNode extends Node {
 
   GetPrevNodeCoords() {
     if (this.prevNode !== null) return [this.prevNode.x, this.prevNode.y];
+  }
+  GetCoordsAndDim() {
+    return [this.x, this.y, this.width, this.height];
   }
 }
 
@@ -355,16 +341,9 @@ class Graph {
     // console.log(`-1`);
     return -1;
   }
-}
-
-class DijkstraGraph extends Graph {
-  constructor(numOfNodesPerRow = 25) {
-    super(numOfNodesPerRow);
-  }
-
   ColorShortestPath() {
-    let curNode = super.nodes[super.destination.y][super.destination.x];
-    let startNode = super.nodes[super.source.y][super.source.x];
+    let curNode = this.nodes[this.destination.y][this.destination.x];
+    let startNode = this.nodes[this.source.y][this.source.x];
 
     while (curNode.prevNode !== null && curNode.prevNode !== startNode) {
       curNode.prevNode.color = 'purple';
@@ -381,49 +360,42 @@ class GraphGrid {
 
   // Initializes GraphGrid and Graph parameter
   InitWith(g) {
-    const canvas = document.getElementById('cnv');
-    canvas.style.backgroundColor = this.bgColor;
-    // canvas.width = window.innerWidth * 0.94;
-    // canvas.height = window.innerWidth * 0.94;
-    canvas.style.padding = `${canvas.width * 0.00625}px`;
+    const cnv = document.getElementById('cnv');
+    cnv.style.backgroundColor = this.bgColor;
+    cnv.style.padding = `${cnv.width * 0.00625}px`;
 
-    if (canvas.getContext) {
-      const pad = canvas.width / 100;
+    const pad = cnv.width / 100;
 
-      const dX = canvas.width / g.numOfNodesPerRow;
-      const dY = canvas.height / g.numOfNodesPerRow;
+    const dX = cnv.width / g.numOfNodesPerRow;
+    const dY = cnv.height / g.numOfNodesPerRow;
 
-      let posX = pad;
-      let posY = pad;
+    let posX = pad;
+    let posY = pad;
 
-      const nodeWidth = dX - 2 * pad;
-      const nodeheight = dY - 2 * pad;
+    const nodeWidth = dX - 2 * pad;
+    const nodeheight = dY - 2 * pad;
 
-      // Initialize graph
-      for (let i = 0; i < g.numOfNodesPerRow; i++) {
-        g.nodes[i] = [];
+    // Initialize graph
+    for (let i = 0; i < g.numOfNodesPerRow; i++) {
+      g.nodes[i] = [];
 
-        let color = 'rgb(0,0,0)';
-        for (let j = 0; j < g.numOfNodesPerRow; j++) {
-          const isWall = Math.floor(Math.random() * 2);
-          g.nodes[i] = [
-            ...g.nodes[i],
-            new DijkstraNode(posX, posY, nodeWidth, nodeheight, color, isWall)
-          ];
-          posX += dX;
-        }
-        posX = pad;
-        posY += dY;
+      let color = 'rgb(0,0,0)';
+      for (let j = 0; j < g.numOfNodesPerRow; j++) {
+        const isWall = Math.floor(Math.random() * 2);
+        g.nodes[i] = [
+          ...g.nodes[i],
+          new Node(posX, posY, nodeWidth, nodeheight, color, isWall)
+        ];
+        posX += dX;
       }
-    } else {
-      alert('Canvas visualization unsupported by your browser =[');
-      return;
+      posX = pad;
+      posY += dY;
     }
     this.Color(g);
   }
   Color(g, nodeShape = 'square') {
-    const canvas = document.getElementById('cnv');
-    const ctx = canvas.getContext('2d');
+    const cnv = document.getElementById('cnv');
+    const ctx = cnv.getContext('2d');
 
     g.nodes.forEach(nodesRow =>
       nodesRow.forEach(node => {
@@ -452,19 +424,10 @@ class GraphGrid {
   }
 
   Clear() {
-    const canvas = document.getElementById('cnv');
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const cnv = document.getElementById('cnv');
+    const ctx = cnv.getContext('2d');
+    ctx.clearRect(0, 0, cnv.width, cnv.height);
   }
 }
 
-export {
-  Node,
-  DijkstraNode,
-  Graph,
-  DijkstraGraph,
-  GraphGrid,
-  Bar,
-  BarChart,
-  BarChartGrid
-};
+export { Node, Graph, GraphGrid, Bar, BarChart, BarChartGrid };

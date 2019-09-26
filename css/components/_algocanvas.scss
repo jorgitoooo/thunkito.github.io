@@ -1,13 +1,47 @@
 #cnv-container {
+  position: relative;
   width: 100%;
   height: 100vh;
   text-align: center;
 }
+// #cnv-card {
+//   position: relative;
+// }
 #cnv {
-  background: transparent;
+  // background: transparent;
 
   margin-top: 5%;
   margin-bottom: 10%;
   height: auto;
   width: 100%;
+
+  // filter: blur(1px);
 }
+// #algo-card {
+//   z-index: 1000;
+//   position: absolute;
+//   margin-top: 5%;
+//   // padding-bottom: 10%;
+//   height: 86%;
+//   width: 100%;
+
+//   background: rgba(0, 0, 0, 0.7);
+//   // background-color: transparent;
+
+//   // filter: blur(1px);
+// }
+
+// .flex {
+//   display: flex !important;
+//   flex-direction: column !important;
+//   justify-content: center !important;
+// }
+
+// #algo-label {
+//   top: 50%;
+//   color: white;
+
+//   font-family: Arial, Helvetica, sans-serif;
+//   font-weight: 800;
+//   font-size: 1.3rem;
+// }

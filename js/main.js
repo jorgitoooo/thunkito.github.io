@@ -1,5 +1,5 @@
 import {
-  DijkstraGraph,
+  Graph,
   GraphGrid,
   BarChart,
   BarChartGrid
@@ -11,29 +11,56 @@ import insertionSort from '../algorithms/sort/insertionsort.js';
 import selectionSort from '../algorithms/sort/selectionsort.js';
 
 window.onload = () => {
+  console.log(window);
   async function display(algorithms, type) {
-    while (true) {
-      type %= algorithms.length;
-      let success = false;
-      while (!success) {
-        let algorithm = algorithms[type];
-        let dataStruct, grid;
+    const cnv = document.getElementById('cnv');
 
-        if (type < 3) {
-          // Graph & grid construction
-          dataStruct = new DijkstraGraph();
-          grid = new GraphGrid();
-        } else {
-          // Bar chart & grid construction
-          dataStruct = new BarChart();
-          grid = new BarChartGrid();
+    if (cnv.getContext) {
+      while (true) {
+        type %= algorithms.length;
+        let success = false;
+
+        while (!success) {
+          let algorithm = algorithms[type];
+          let dataStruct, grid;
+
+          if (type < 3) {
+            // Graph & grid construction
+            dataStruct = new Graph();
+            grid = new GraphGrid();
+          } else {
+            // Bar chart & grid construction
+            dataStruct = new BarChart();
+            grid = new BarChartGrid();
+          }
+          // document.getElementById('algo-label').innerText = algorithmLabel(
+          //   algorithm.name
+          // );
+          success = await algorithm(dataStruct, grid);
+
+          if (!success) await displayFailure();
         }
-
-        success = await algorithm(dataStruct, grid);
-
-        if (!success) await displayFailure();
+        ++type;
       }
-      ++type;
+    } else {
+      alert('Canvas not available on your browser.');
+    }
+  }
+
+  function algorithmLabel(name) {
+    switch (name) {
+      case 'dijkstra':
+        return 'Dijkstra';
+      case 'depthFirstSearch':
+        return 'Depth First Search';
+      case 'breadthFirstSearch':
+        return 'Breadth First Search';
+      case 'insertionSort':
+        return 'Insertion Sort';
+      case 'selectionSort':
+        return 'Selection Sort';
+      default:
+        return 'Algorithms';
     }
   }
 
@@ -44,12 +71,12 @@ window.onload = () => {
       let alt = false;
 
       let interval = setInterval(() => {
-        cnv.style.border = alt ? 'none' : '3px red dashed';
+        cnv.style.borderBottom = alt ? 'none' : '5px red solid';
         alt = !alt;
       }, 250);
 
       setTimeout(() => {
-        cnv.style.border = 'none';
+        cnv.style.borderBottom = 'none';
 
         clearInterval(interval);
 
@@ -66,7 +93,9 @@ window.onload = () => {
     ) {
       navbar.style.background = 'rgba(255,255,255,0.99)';
       navbar.style.boxShadow =
-        '0 2px 2px 0 rgba(0,0,0,0.14),0 3px 1px -2px rgba(0,0,0,0.12),0 1px 5px 0 rgba(0,0,0,0.2)';
+        '0 2px 2px 0 rgba(0,0,0,0.14),' +
+        '0 3px 1px -2px rgba(0,0,0,0.12),' +
+        '0 1px 5px 0 rgba(0,0,0,0.2)';
     } else {
       navbar.style.background = 'transparent';
       navbar.style.boxShadow = 'none';
@@ -121,6 +150,7 @@ window.onload = () => {
     };
     let stopId = requestAnimationFrame(scrollAnimation);
   };
+
   const algorithms = [dijkstra, dfs, bfs, insertionSort, selectionSort];
   display(algorithms, 0);
 
