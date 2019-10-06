@@ -14,9 +14,12 @@ export default function breadthFirstSearch(g, grid) {
     g.nodes[y][x].isWall = false;
     g.nodes[y][x].color = g.srcColor;
 
+    // Destination vertex coordinates
+    let [destX, destY] = [g.destination.x, g.destination.y];
+
     // Initialize destination/target node
-    g.nodes[g.destination.y][g.destination.x].color = g.destColor;
-    g.nodes[g.destination.y][g.destination.x].isWall = false;
+    g.nodes[destY][destX].color = g.destColor;
+    g.nodes[destY][destX].isWall = false;
 
     let adjList = g.GetAdjacentNodes(x, y);
     let coords = [];
@@ -45,7 +48,7 @@ export default function breadthFirstSearch(g, grid) {
             // Removes any duplicates that adjList may have
             removeDuplicates();
 
-            if (adjX === g.destination.x && adjY === g.destination.y) {
+            if (adjX === destX && adjY === destY) {
               g.nodes[adjY][adjX].color = g.destFoundColor;
             } else {
               g.nodes[adjY][adjX].color = g.visitedColor;
@@ -60,7 +63,7 @@ export default function breadthFirstSearch(g, grid) {
 
       stopId = requestAnimationFrame(bfsAnimation);
 
-      if (adjX == g.destination.x && adjY == g.destination.y) {
+      if (adjX == destX && adjY == destY) {
         cancelAnimationFrame(stopId);
 
         setTimeout(() => {

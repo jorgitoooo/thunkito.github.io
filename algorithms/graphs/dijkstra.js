@@ -9,6 +9,9 @@ export default function dijkstra(g, grid) {
     /********************************************************/
     let { x, y } = g.source;
 
+    // Destination vertex coordinates
+    let [destX, destY] = [g.destination.x, g.destination.y];
+
     // Color and tag source node
     g.nodes[y][x].distance = 0;
     g.nodes[y][x].wasVisited = true;
@@ -16,8 +19,8 @@ export default function dijkstra(g, grid) {
     g.nodes[y][x].color = g.srcColor;
 
     // Color destination node
-    g.nodes[g.destination.y][g.destination.x].color = g.destColor;
-    g.nodes[g.destination.y][g.destination.x].isWall = false;
+    g.nodes[destY][destX].color = g.destColor;
+    g.nodes[destY][destX].isWall = false;
 
     //**************************
     // g.nodes[10][10].color = g.destColor;
@@ -71,7 +74,7 @@ export default function dijkstra(g, grid) {
             // Removes any duplicates that adjList may have
             removeDuplicates();
 
-            if (adjX === g.destination.x && adjY === g.destination.y) {
+            if (adjX === destX && adjY === destY) {
               // if (adjX === 10 && adjY === 10) {
               g.nodes[adjY][adjX].color = g.destFoundColor;
             } else {
@@ -87,7 +90,7 @@ export default function dijkstra(g, grid) {
 
       stopId = requestAnimationFrame(dijkstraAnimate);
 
-      if (adjX == g.destination.x && adjY == g.destination.y) {
+      if (adjX == destX && adjY == destY) {
         // if (adjX == 10 && adjY == 10) {
         cancelAnimationFrame(stopId);
 
@@ -99,7 +102,7 @@ export default function dijkstra(g, grid) {
       }
     }
 
-    let travelingNode = g.nodes[g.destination.y][g.destination.x];
+    let travelingNode = g.nodes[destY][destX];
     let pathCompleted = false;
 
     grid.Clear();

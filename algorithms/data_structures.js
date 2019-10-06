@@ -178,10 +178,21 @@ class Graph {
       x: Math.floor(Math.random() * this.numOfNodesPerRow),
       y: Math.floor(Math.random() * this.numOfNodesPerRow)
     };
+
     this.destination = {
       x: Math.floor(Math.random() * this.numOfNodesPerRow),
       y: Math.floor(Math.random() * this.numOfNodesPerRow)
     };
+
+    while (
+      Math.abs(this.destination.x - this.source.x) < 7 &&
+      Math.abs(this.destination.y - this.source.y) < 7
+    ) {
+      this.destination = {
+        x: Math.floor(Math.random() * this.numOfNodesPerRow),
+        y: Math.floor(Math.random() * this.numOfNodesPerRow)
+      };
+    }
   }
 
   GetAdjacentNodes(x, y) {

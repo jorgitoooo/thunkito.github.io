@@ -11,7 +11,6 @@ import insertionSort from '../algorithms/sort/insertionsort.js';
 import selectionSort from '../algorithms/sort/selectionsort.js';
 
 window.onload = () => {
-  console.log(window);
   async function display(algorithms, type) {
     const cnv = document.getElementById('cnv');
 
@@ -24,7 +23,7 @@ window.onload = () => {
           let algorithm = algorithms[type];
           let dataStruct, grid;
 
-          if (type < 3) {
+          if (requiresGraphDataStruct(algorithm.name)) {
             // Graph & grid construction
             dataStruct = new Graph();
             grid = new GraphGrid();
@@ -44,6 +43,17 @@ window.onload = () => {
       }
     } else {
       alert('Canvas not available on your browser.');
+    }
+  }
+
+  function requiresGraphDataStruct(name) {
+    switch (name) {
+      case 'dijkstra':
+      case 'depthFirstSearch':
+      case 'breadthFirstSearch':
+        return true;
+      default:
+        return false;
     }
   }
 
@@ -151,7 +161,7 @@ window.onload = () => {
     let stopId = requestAnimationFrame(scrollAnimation);
   };
 
-  const algorithms = [dijkstra, dfs, bfs, insertionSort, selectionSort];
+  const algorithms = [dijkstra, insertionSort, bfs, selectionSort, dfs];
   display(algorithms, 0);
 
   window.onscroll = highlightNavOnScroll;
