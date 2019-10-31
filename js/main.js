@@ -161,7 +161,7 @@ window.onload = () => {
     let stopId = requestAnimationFrame(scrollAnimation);
   };
 
-  const algorithms = [dijkstra, insertionSort, dfs, bfs, selectionSort];
+  const algorithms = [dijkstra, insertionSort, dfs, /* bfs, */ selectionSort];
   display(algorithms, 0);
 
   window.onscroll = highlightNavOnScroll;
